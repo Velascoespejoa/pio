@@ -46,10 +46,14 @@ public class PostService {
 
 	public PostResponseDTO createPost(PostRequestDTO dto) {
 		
-		userRepo.findById(dto.getUserId()).orElseThrow(
+		User user = userRepo.findById(dto.getUserId()).orElseThrow(
 				()-> new UserException("id de usuario no existe",HttpStatus.NOT_FOUND));
+
+		Post post = postMap.toEntity(dto);
+
+		post.setUser(user);
 		
-		Post postGuardado = postRepo.save(postMap.toEntity(dto));
+		Post postGuardado = postRepo.save(post);
 		
 		return postMap.toDTO(postGuardado);
 	}

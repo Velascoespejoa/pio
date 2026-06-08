@@ -1,7 +1,9 @@
 package com.velascoespejo.pio.user;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,6 +15,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -48,7 +53,16 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Post> post;
 	
-	
+	@ManyToMany
+	@JoinTable(
+		name = "follows",
+		joinColumns = @JoinColumn(name = "seguidor_id"),
+		inverseJoinColumns = @JoinColumn(name = "seguido_id")		
+	)
+	private Set<User> seguidos = new HashSet<>();
+
+	@ManyToMany(mappedBy = "seguidos")
+	private Set<User> seguidores = new HashSet<>();	
 	
 
 }
