@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.velascoespejo.pio.follow.FollowException;
 import com.velascoespejo.pio.post.PostException;
 //import com.velascoespejo.pio.post.PostException;
 import com.velascoespejo.pio.user.UserException;
@@ -26,6 +27,11 @@ public class GlobalExceptionHandler {
     //Post
     @ExceptionHandler(PostException.class)
     public ResponseEntity<String> handlePostException(PostException e) {
+        return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+    }
+     //Follow
+    @ExceptionHandler(FollowException.class)
+    public ResponseEntity<String> handleFollowException(FollowException e) {
         return ResponseEntity.status(e.getStatus()).body(e.getMessage());
     }
     

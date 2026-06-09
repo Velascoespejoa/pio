@@ -8,10 +8,12 @@ import java.util.Set;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.velascoespejo.pio.follow.Follow;
 import com.velascoespejo.pio.post.Post;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -51,18 +53,12 @@ public class User {
 	private LocalDateTime createAt;
 	
 	@OneToMany(mappedBy = "user")
-	private List<Post> post;
+	private List<Post> post;	
 	
-	@ManyToMany
-	@JoinTable(
-		name = "follows",
-		joinColumns = @JoinColumn(name = "seguidor_id"),
-		inverseJoinColumns = @JoinColumn(name = "seguido_id")		
-	)
-	private Set<User> seguidos = new HashSet<>();
+	@OneToMany(mappedBy = "seguidor", fetch = FetchType.LAZY)
+	private Set<Follow> siguiendo = new HashSet<>();
 
-	@ManyToMany(mappedBy = "seguidos")
-	private Set<User> seguidores = new HashSet<>();	
-	
+	@OneToMany(mappedBy = "seguido", fetch = FetchType.LAZY)
+	private Set<Follow> seguidores = new HashSet<>();
 
 }
