@@ -1,5 +1,8 @@
 package com.velascoespejo.pio.auth;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +21,15 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepo;
     private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request){
-        return null;
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getNick(), request.getPassword()));
+        UserDetails user = userRepo.findByNick(request.getNick()).orElseThrow();
+        String token = jwtService.getToken(user);
+        return AuthResponse.builder()
+            .token(token)
+            .build(); 
     }
 
     public AuthResponse register(RegisterRequest request){

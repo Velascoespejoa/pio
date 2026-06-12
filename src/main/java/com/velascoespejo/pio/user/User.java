@@ -79,14 +79,12 @@ public class User implements UserDetails {
 
 	@Override
 	public @Nullable String getPassword() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getPassword'");
+		return passwordHashed;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
+		return nick;
 	}
 
 }
