@@ -8,17 +8,20 @@
 }
 
 .sidebar {
-  width: 320px;
+  width: 300px;
   flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .feed {
   flex: 1;
   min-width: 0;
+  border: solid 1px rgba(232, 235, 236, .5);
 }
 
 .rightbar {
-  width: 320px;
+  width: 350px;
   flex-shrink: 0;
 }
 
@@ -33,6 +36,15 @@
 
   .sidebar {
     width: 80px;
+
+  }
+
+  .sidebar span {
+    display: none;
+  }
+
+  .sidebar .nav-item{
+    justify-content: center;
   }
 
 }

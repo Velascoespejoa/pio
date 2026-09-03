@@ -1,7 +1,14 @@
+import { useState } from 'react'
 import '../styles/pio.css'
+import profileIMG from "../assets/default-profile.png"
+import repioSVG from "../assets/repio.svg"
+import commentSVG from "../assets/comment.svg"
+import likeSVG from "../assets/like.svg"
+import viewSVG from "../assets/view.svg";
 
-
-function Pio({nick, user, time, text, comments, repios, likes, views, profileIMG }){
+function Pio(){
+    const [likes, setLikes] = useState(0);
+    const [repios, setRepios] = useState(0);
 
     return (
         <>
@@ -9,16 +16,20 @@ function Pio({nick, user, time, text, comments, repios, likes, views, profileIMG
                 <div className="pio">
                     <div className="pio-left-column">
                         <div className="pio-img">
-                            <img src={`src/assets/avatares/${profileIMG}`} alt="logo" />
+                            <img src={profileIMG} alt="logo" />
                         </div>
                     </div>
                     <div className="pio-right-column">
                         <div className="pio-tittle">
-                            <span className="nick"><strong>{nick}</strong></span>
-                            <span className="userAndTime"> @{user} - {time}</span>
+                            <span className="nick"><strong>Xetloz</strong></span>
+                            <span className="userAndTime"> @xetloz1001 - 10min</span>
                         </div>
                         <div className="pio-body">
-                            <p>{text}</p> 
+                            <p>Japón es una sociedad bastante más restrictiva que China. 
+                                Pero bastante más. Ved vídeos y entrevistas de chinos viviendo en 
+                                Japón: estudiantes, trabajadores, turistas...
+                                Y todos amáis Japón. Amariáis también China sin los trillones 
+                                de propaganda que invierten los anglosajones.</p> 
                         </div>
                         <div className="pio-footer">
                             <div className="pio-comments-count">
@@ -35,7 +46,7 @@ function Pio({nick, user, time, text, comments, repios, likes, views, profileIMG
                                         </g>
                                     </g>
                                 </svg>
-                                <span>{comments}</span>
+                                <span>6</span>
                             </div>
                             <div className="pio-repios-count">                               
                                 <svg
@@ -96,20 +107,20 @@ function Pio({nick, user, time, text, comments, repios, likes, views, profileIMG
                                     }}
                                 />
                                 </svg>
-                                <span>{repios}</span>
+                                <span>10</span>
                             </div>
                             <div className="pio-likes-count">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8 10V20M8 10L4 9.99998V20L8 20M8 10L13.1956 3.93847C13.6886 3.3633 14.4642 3.11604 15.1992 3.29977L15.2467 3.31166C16.5885 3.64711 17.1929 5.21057 16.4258 6.36135L14 9.99998H18.5604C19.8225 9.99998 20.7691 11.1546 20.5216 12.3922L19.3216 18.3922C19.1346 19.3271 18.3138 20 17.3604 20L8 20" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span>{likes}</span>
+                                <span>250</span>
                             </div>
                             <div className="pio-views-count">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="12" cy="12" r="3.5" stroke="#222222"/>
                                     <path d="M21 12C21 12 20 4 12 4C4 4 3 12 3 12" stroke="#222222"/>
                                 </svg>
-                                <span>{views}</span>
+                                <span>2 mil</span>
                             </div>
                         </div>
                     </div>                    

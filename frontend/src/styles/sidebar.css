@@ -1,0 +1,35 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;    
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    text-decoration: none;
+    color: inherit;
+    max-width: 190px;
+    border-radius: 30px;
+}
+
+.nav-item:hover{
+    background-color: rgba(228, 226, 223, 0.25);
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-label {
+    font-size: 20px;
+}
+
+.nav-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
