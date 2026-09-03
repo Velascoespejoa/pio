@@ -7,7 +7,6 @@ function Home(){
 
     return (
         <> 
-
             <div className="container">
                 <aside className="sidebar">
                     <Sidebar />

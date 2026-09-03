@@ -22,7 +22,7 @@ function Pio(){
                     <div className="pio-right-column">
                         <div className="pio-tittle">
                             <span className="nick"><strong>Xetloz</strong></span>
-                            <span className="userAndTime">@xetloz1001 - 10min</span>
+                            <span className="userAndTime"> @xetloz1001 - 10min</span>
                         </div>
                         <div className="pio-body">
                             <p>Japón es una sociedad bastante más restrictiva que China. 

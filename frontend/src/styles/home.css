@@ -1,0 +1,53 @@
+/* Desktop */
+
+.container {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+.feed {
+  flex: 1;
+  min-width: 0;
+}
+
+.rightbar {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+
+  .rightbar {
+    display: none;
+  }
+
+  .sidebar {
+    width: 80px;
+  }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .feed {
+    width: 100%;
+  }
+
+}

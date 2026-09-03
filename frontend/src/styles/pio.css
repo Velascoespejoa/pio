@@ -1,5 +1,5 @@
 .pio-container{
-    width: 600px;
+    width: auto;
     height: auto;
 
 }
@@ -41,18 +41,53 @@
 }
 
 .pio-img img:hover{
-    background-color: rgb(191, 210, 221);
+    background-color: rgb(191, 210, 221, .3);
 }
 
 .pio-footer img{
     width: 20px;
     height: 20px;
+    border-radius: 30px;
     object-fit: contain;
-    padding-right: 4px;
+    padding: 5px;
+}
+
+.pio-likes-count{
+    display: flex;
+    align-items: center;
+}
+
+.pio-repios-count{
+    display: flex;
+    align-items: center;
+}
+
+.pio-comments-count{
+    display: flex;
+    align-items: center;
+}
+
+.pio-views-count{
+    display: flex;
+    align-items: center;
+}
+
+.pio-likes-count img:hover{
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.pio-comments-count img:hover{
+    background-color: rgba(0, 106, 255, 0.2);
+}
+
+.pio-repios-count img:hover{
+    background-color: rgba(0, 255, 47, 0.2);
+}
+.pio-views-count img:hover{
+    background-color: rgba(0, 106, 255, 0.2);
 }
 
 .pio-footer{
-
     display: flex;
     justify-content: space-between;
     padding-right: 20px;
