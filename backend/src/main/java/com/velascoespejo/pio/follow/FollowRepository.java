@@ -16,11 +16,11 @@ public interface FollowRepository extends JpaRepository<Follow, Long> {
 
     Optional<Follow> findBySeguidorAndSeguido(User seguidor, User seguido);
 
-    // contar sin cargar objetos
+
     long countBySeguidorId(Long seguidorId);
     long countBySeguidoId(Long seguidoId);
 
-    // feed: IDs de usuarios que sigo
+    
     @Query("SELECT f.seguido.id FROM Follow f WHERE f.seguidor.id = :id")
     List<Long> findSeguidosIdsBySeguidorId(@Param("id") Long id);
 

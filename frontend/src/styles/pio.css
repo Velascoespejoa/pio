@@ -1,0 +1,64 @@
+.pio-container{
+    width: 600px;
+    height: auto;
+
+}
+
+.pio-container:hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+.pio-tittle{
+    text-align: left;
+}
+
+.nick:hover{
+    text-decoration: underline;
+}
+
+.pio{
+    display: flex;
+}
+
+.pio-left-column{
+    padding-right: 5px;
+}
+.pio-body p{
+    text-align: left;
+    margin-top: 0px;
+}
+
+.pio-img{
+    padding:5px;
+    padding-top:15px;
+}
+
+.pio-img img{
+    border-radius:30px;
+    width: 50px;
+    height: 50px;
+}
+
+.pio-img img:hover{
+    background-color: rgb(191, 210, 221);
+}
+
+.pio-footer img{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    padding-right: 4px;
+}
+
+.pio-footer{
+
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.userAndTime{
+    color: rgb(196, 203, 206);
+}
