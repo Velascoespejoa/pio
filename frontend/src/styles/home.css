@@ -12,6 +12,7 @@
   flex-shrink: 0;
   display: flex;
   justify-content: flex-end;
+  margin-right: 15px;
 }
 
 .feed {

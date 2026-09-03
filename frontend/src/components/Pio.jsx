@@ -1,7 +1,7 @@
 import '../styles/pio.css'
 
 
-function Pio({nick, user, time, text, comments, repios, likes, views, profileIMG }){
+function Pio({nick, user, time, text, comments, repios, likes, views, profileImgUrl }){
 
     return (
         <>
@@ -9,7 +9,7 @@ function Pio({nick, user, time, text, comments, repios, likes, views, profileIMG
                 <div className="pio">
                     <div className="pio-left-column">
                         <div className="pio-img">
-                            <img src={`src/assets/avatares/${profileIMG}`} alt="logo" />
+                            <img src={`src/assets/avatares/${profileImgUrl}`} alt="logo" />
                         </div>
                     </div>
                     <div className="pio-right-column">

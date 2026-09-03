@@ -13,7 +13,7 @@ const pios = [
         repios: 10,
         likes: 60,
         views: "5 mil",
-        profileIMG: "1.jpeg"
+        profileImgUrl: "1.jpeg"
     },
     {
         nick: "Ana García",
@@ -24,7 +24,7 @@ const pios = [
         repios: 4,
         likes: 87,
         views: "2,4 mil",
-        profileIMG: "2.jpeg"
+        profileImgUrl: "2.jpeg"
     },
     {
         nick: "CarlosDev",
@@ -35,7 +35,7 @@ const pios = [
         repios: 16,
         likes: 143,
         views: "8,7 mil",
-        profileIMG: "3.jpeg"
+        profileImgUrl: "3.jpeg"
     },
     {
         nick: "María López",
@@ -46,7 +46,7 @@ const pios = [
         repios: 3,
         likes: 45,
         views: "1,2 mil",
-        profileIMG: "4.jpeg"
+        profileImgUrl: "4.jpeg"
     },
     {
         nick: "TechNews",
@@ -57,7 +57,7 @@ const pios = [
         repios: 102,
         likes: 421,
         views: "32 mil",
-        profileIMG: "5.jpeg"
+        profileImgUrl: "5.jpeg"
     },
     {
         nick: "David Martín",
@@ -68,7 +68,7 @@ const pios = [
         repios: 8,
         likes: 96,
         views: "4,8 mil",
-        profileIMG: "6.jpeg"
+        profileImgUrl: "6.jpeg"
     },
     {
         nick: "Laura",
@@ -79,7 +79,7 @@ const pios = [
         repios: 21,
         likes: 210,
         views: "12 mil",
-        profileIMG: "7.jpeg"
+        profileImgUrl: "7.jpeg"
     },
     {
         nick: "Gaming España",
@@ -90,7 +90,7 @@ const pios = [
         repios: 73,
         likes: 890,
         views: "45 mil",
-        profileIMG: "8.jpeg"
+        profileImgUrl: "8.jpeg"
     },
 
 ];
@@ -105,11 +105,38 @@ const pios = [
                     user = {pio.user}
                     time = {pio.time}
                     text = {pio.text}
-                    comments= {pio.comments}
-                    repios= {pio.repios}
-                    likes= {pio.likes}
-                    views= {pio.views}
-                    profileIMG= {pio.profileIMG}
+                    comments = {pio.comments}
+                    repios = {pio.repios}
+                    likes = {pio.likes}
+                    views = {pio.views}
+                    profileImgUrl = {pio.profileImgUrl}
+                />
+            ))}
+
+            {pios.map((pio) => (
+                <Pio 
+                    nick = {pio.nick}
+                    user = {pio.user}
+                    time = {pio.time}
+                    text = {pio.text}
+                    comments = {pio.comments}
+                    repios = {pio.repios}
+                    likes = {pio.likes}
+                    views = {pio.views}
+                    profileImgUrl = {pio.profileImgUrl}
+                />
+            ))}
+            {pios.map((pio) => (
+                <Pio 
+                    nick = {pio.nick}
+                    user = {pio.user}
+                    time = {pio.time}
+                    text = {pio.text}
+                    comments = {pio.comments}
+                    repios = {pio.repios}
+                    likes = {pio.likes}
+                    views = {pio.views}
+                    profileImgUrl = {pio.profileImgUrl}
                 />
             ))}
         </>
