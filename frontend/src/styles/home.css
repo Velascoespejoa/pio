@@ -13,6 +13,7 @@
   display: flex;
   justify-content: flex-end;
   margin-right: 15px;
+
 }
 
 .feed {
@@ -29,16 +30,18 @@
 
 /* Tablet */
 
-@media (max-width: 1000px) {
+@media (max-width: 1250px) {
 
-  .rightbar {
-    display: none;
-  }
 
   .sidebar {
     width: 80px;
-
+    margin-right: 0px;
   }
+
+  .sidebar .nav-item{
+    border-radius: 0px;
+  }
+  
 
   .sidebar span {
     display: none;
@@ -53,9 +56,9 @@
 
 /* Mobile */
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
 
-  .sidebar {
+  .rightbar {
     display: none;
   }
 

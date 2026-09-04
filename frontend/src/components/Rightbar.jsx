@@ -34,6 +34,64 @@ function Rightbar(){
                     <div className="tendencias-title">
                         <span>Tendencias</span>
                     </div>
+                    <div className="tendencias-body">
+                        <div className="tendencias-item">
+                           <div>
+                                <span>React</span>
+                           </div>
+                        </div>
+                         <div className="tendencias-item">
+                           <div>
+                                <span>Angular</span>
+                           </div>
+                        </div>
+                         <div className="tendencias-item">
+                           <div>
+                                <span>NodeJS</span>
+                           </div>
+                        </div>
+                         <div className="tendencias-item">
+                           <div>
+                                <span>ExpressJS</span>
+                           </div>
+                        </div>
+                         <div className="tendencias-item">
+                           <div>
+                                <span>VueJS</span>
+                           </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div className="sugerencias-container">
+                    <div className="sugerencias-title">
+                        <span>A quién seguir</span>
+                    </div>
+                    <div className="sugerencias-body">
+                        <div className="seguir-a">
+                            <div className="seguir-avatar">
+                                <img src="asd" alt="img" />
+                            </div>
+
+                            <div className="seguir-info">
+                                <span className="seguir-nombre">
+                                    <strong>nombre</strong>
+                                </span>
+
+                                <span className="seguir-user">
+                                    @User
+                                </span>
+                            </div>
+
+                            <div className="seguir-boton">
+                                <button>seguir</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="sugerencias-footer">
+
+                    </div>
                 </div>
             </div>
         </>

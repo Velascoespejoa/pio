@@ -14,14 +14,13 @@
     padding: 8px 15px;
     border-radius: 10px;
     background-color: #f2f2f2;
-    width: 80%; 
+    width: 73%; 
 }
 
 .search input {
     border: none;
     outline: none;
     background: transparent;
-
     font-size: 16px;
     padding: 7px;
 }
@@ -33,17 +32,90 @@
 
 .tendencias{
     margin-top: 30px;
-    width: 83%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: solid 1px rgba(232, 235, 236, 1);
     border-radius: 10px;
-    padding: 7px;
 }
 
 .tendencias-title{
+    width: 90%;
+    display: flex;
+    padding-top: 10px;
+}
+
+.tendencias-title span{
+    font-size: large;
+}
+
+
+.tendencias-body{
+    margin-top: 15px;
     width: 100%;
-    text-align: left;
+}
+
+.tendencias-item{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
 }
+
+.tendencias-item div{
+    width: 90%;
+}
+
+.tendencias-item:hover{
+    background-color: rgb(191, 210, 221, .3);
+    cursor: pointer;
+}
+.tendencias-item span {
+    font-size: small;
+}
+
+.sugerencias-container{
+    border: solid 1px rgba(232, 235, 236, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.sugerencias-title {
+    display: flex;
+    width: 90%;
+    padding-top: 10px;
+}
+
+.sugerencias-body{
+    background-color: black;
+    width: 100%;
+}
+
+.seguir-a{
+    background-color: red;
+    display: flex;
+    padding: 12px 16px;
+}
+
+.seguir-avatar{
+  flex-shrink: 0;
+  background-color: white;
+}
+
+.seguir-info{
+
+    background-color: blue;
+}
+
+.seguir-boton{
+  flex-shrink: 0;
+  background-color: aqua;
+}
+
