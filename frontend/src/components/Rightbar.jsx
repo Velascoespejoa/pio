@@ -71,21 +71,61 @@ function Rightbar(){
                     <div className="sugerencias-body">
                         <div className="seguir-a">
                             <div className="seguir-avatar">
-                                <img src="asd" alt="img" />
+                                <img src="src/assets/avatares/1.jpeg" alt="img" />
                             </div>
 
                             <div className="seguir-info">
                                 <span className="seguir-nombre">
-                                    <strong>nombre</strong>
+                                    <strong>Juaniko</strong>
                                 </span>
 
                                 <span className="seguir-user">
-                                    @User
+                                    @juan986
                                 </span>
                             </div>
 
                             <div className="seguir-boton">
-                                <button>seguir</button>
+                                <button>Seguir</button>
+                            </div>
+                        </div>
+
+                        <div className="seguir-a">
+                            <div className="seguir-avatar">
+                                <img src="src/assets/avatares/2.jpeg" alt="img" />
+                            </div>
+
+                            <div className="seguir-info">
+                                <span className="seguir-nombre">
+                                    <strong>Rodri Perez</strong>
+                                </span>
+
+                                <span className="seguir-user">
+                                    @peroz312
+                                </span>
+                            </div>
+
+                            <div className="seguir-boton">
+                                <button>Seguir</button>
+                            </div>
+                        </div>
+
+                        <div className="seguir-a">
+                            <div className="seguir-avatar">
+                                <img src="src/assets/avatares/3.jpeg" alt="img" />
+                            </div>
+
+                            <div className="seguir-info">
+                                <span className="seguir-nombre">
+                                    <strong>Homero</strong>
+                                </span>
+
+                                <span className="seguir-user">
+                                    @Illisiaco
+                                </span>
+                            </div>
+
+                            <div className="seguir-boton">
+                                <button>Seguir</button>
                             </div>
                         </div>
                     </div>

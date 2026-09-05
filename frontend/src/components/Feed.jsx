@@ -1,4 +1,6 @@
 import Pio from '../components/Pio.jsx'
+import "../styles/feed.css"
+import reactIcono from "../assets/react.png"
 
 function Feed(){
 
@@ -99,6 +101,21 @@ const pios = [
 
     return (
         <>
+            <div className="publicar-container">
+                <div className="avatar-container">
+                    <img src={reactIcono} alt="avatar" />    
+                </div>
+                <div className="publicar-body">
+                      <div
+                        id="postInput"
+                        className="publicar-input"
+                        contenteditable="true"
+                        data-placeholder="¿Qué está pasando?"
+                        role="textbox"
+                        aria-multiline="true"
+                    ></div>
+                </div>
+            </div>
             {pios.map((pio) => (
                 <Pio 
                     nick = {pio.nick}
