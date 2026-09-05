@@ -96,7 +96,7 @@ function Rightbar(){
 
                             <div className="seguir-info">
                                 <span className="seguir-nombre">
-                                    <strong>Rodri Perez</strong>
+                                    <strong>Rodri Perez velasco</strong>
                                 </span>
 
                                 <span className="seguir-user">

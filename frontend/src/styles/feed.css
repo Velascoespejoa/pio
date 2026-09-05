@@ -1,7 +1,10 @@
 .publicar-container{
-    display: flex;
     border-bottom: solid 1px rgba(232, 235, 236, .5);
     border-top: solid 1px rgba(232, 235, 236, .5);
+}
+
+.publicar-top{
+    display: flex;
 }
 
 .avatar-container{
@@ -19,11 +22,43 @@
 .publicar-body{
     flex: 1;
     display: flex;
-    align-items: center;     /* Centra verticalmente */
-    
+    align-items: center; 
+
+     
 }
 
 .publicar-input{
     width: 100%;
-     outline: none
+    outline: none;  
+    min-height: 50px;
+    padding-top: 20px;
+}
+
+
+.publicar-input:empty:before {
+  content:attr(data-placeholder);
+  color:gray
+}
+
+.publicar-footer{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+
+
+}
+
+.publicar-footer button{
+    margin-right: 15px;
+    background-color: rgb(15, 20, 25);
+    border: none;
+    border-radius: 15px;
+    padding: 7px 10px;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+}
+
+.publicar-footer button:hover{
+    background-color: rgb(15, 20, 25, .8);
 }

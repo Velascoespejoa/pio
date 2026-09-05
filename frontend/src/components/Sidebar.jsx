@@ -6,7 +6,7 @@ function Sidebar(){
 
     return (
         <>
-            {/* IMPORTANTE : hay que cambiar las etiqlikeuetas <a> por <Link>(React) en un futuro 
+            {/* IMPORTANTE : hay que cambiar las etiquetas <a> por <Link>(React) en un futuro 
             ¡Estamos trabajando una SPA!*/}
             <nav className="navbar">
 
@@ -15,7 +15,7 @@ function Sidebar(){
                 </div>
 
 
-                <a className="nav-item" href='http://www.google.es'>
+                <a className="nav-item" href='http://localhost:5173/'>
                     <svg className='nav-icon' viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 6V15H6V11C6 9.89543 6.89543 9 8 9C9.10457 9 10 9.89543 10 11V15H15V6L8 0L1 6Z" fill="#000000"/>
                     </svg>

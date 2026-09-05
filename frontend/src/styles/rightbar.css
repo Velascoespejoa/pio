@@ -125,6 +125,14 @@
     margin-left: 20px;
 }
 
+.seguir-info span {
+    display: inline-block;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .seguir-user{
     font-size: small;
 }
@@ -144,5 +152,9 @@
     color: whitesmoke;
     font-weight: bold;
     cursor: pointer;
+}
+
+.seguir-boton button:hover {
+    background-color: rgb(15, 20, 25, .8);
 }
 

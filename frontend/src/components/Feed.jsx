@@ -54,7 +54,7 @@ const pios = [
         nick: "TechNews",
         user: "technews",
         time: "hace 3h",
-        text: "La tecnología avanza a una velocidad increíble. Cada año aparecen nuevas herramientas que cambian la forma en la que desarrollamos aplicaciones.",
+        text: "La tecnología avanza a una velocidad increíble. Cada año aparecen nuevas herramientas que cambian la forma en la que desarrollamos aplicaciones. La tecnología avanza a una velocidad increíble. Cada año aparecen nuevas herramientas que cambian la forma en la que desarrollamos aplicaciones.",
         comments: 56,
         repios: 102,
         likes: 421,
@@ -100,22 +100,28 @@ const pios = [
 
 
     return (
-        <>
-            <div className="publicar-container">
-                <div className="avatar-container">
-                    <img src={reactIcono} alt="avatar" />    
+        <>  <div className="publicar-container">
+                <div className="publicar-top">
+                    <div className="avatar-container">
+                        <img src={reactIcono} alt="avatar" />    
+                    </div>
+                    <div className="publicar-body">
+                        <div
+                            id="postInput"
+                            className="publicar-input"
+                            contentEditable="true"
+                            data-placeholder="¿Qué te ha ofendido hoy?"
+                            role="textbox"
+                            aria-multiline="true"
+                        >
+                        </div>
+                    </div>
                 </div>
-                <div className="publicar-body">
-                      <div
-                        id="postInput"
-                        className="publicar-input"
-                        contenteditable="true"
-                        data-placeholder="¿Qué está pasando?"
-                        role="textbox"
-                        aria-multiline="true"
-                    ></div>
+                <div className="publicar-footer">
+                    <button>Publicar</button>
                 </div>
             </div>
+                
             {pios.map((pio) => (
                 <Pio 
                     nick = {pio.nick}
