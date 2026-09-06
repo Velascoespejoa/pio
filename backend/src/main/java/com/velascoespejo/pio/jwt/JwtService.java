@@ -61,7 +61,7 @@ public class JwtService {
     }
 
     public <T> T getClaim(String token, Function<Claims,T> claimsResolver){
-        final Claims claims =getAllClaims(token);
+        final Claims claims = getAllClaims(token);
         return claimsResolver.apply(claims);
     }
 

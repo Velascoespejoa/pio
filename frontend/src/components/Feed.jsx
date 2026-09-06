@@ -106,7 +106,9 @@ const pios = [
                     <span>Para ti</span>
                 </div>
                 <div className="top-item">
-                    <span className='marcado'>Siguiendo</span>
+                    <span className='marcador'>
+                        <span className='marcado'>Siguiendo</span>
+                    </span>
                 </div>
             </div>
 
