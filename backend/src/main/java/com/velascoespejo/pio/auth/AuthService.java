@@ -1,5 +1,13 @@
 package com.velascoespejo.pio.auth;
 
+
+import java.time.Duration;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,17 +31,33 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthResponse login(LoginRequest request){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getNick(), request.getPassword()));
-        UserDetails user = userRepo.findByNick(request.getNick()).orElseThrow();
+    public ResponseCookie login(LoginRequest request) {
+
+        authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                request.getNick(),
+                request.getPassword()
+            )
+        );
+
+        UserDetails user = userRepo.findByNick(request.getNick())
+            .orElseThrow();
+
         String token = jwtService.getToken(user);
-        return AuthResponse.builder()
-            .token(token)
-            .build(); 
+
+         return ResponseCookie
+            .from("access_token", token)
+            .httpOnly(true)
+            .secure(false) // true en producción con HTTPS
+            .sameSite("Lax")
+            .path("/")
+            .maxAge(Duration.ofHours(1))
+            .build();
+
     }
 
-    public AuthResponse register(RegisterRequest request){
-        
+    public ResponseCookie register(RegisterRequest request) {
+
         User user = User.builder()
             .nick(request.getNick())
             .passwordHashed(passwordEncoder.encode(request.getPassword()))
@@ -44,8 +68,28 @@ public class AuthService {
 
         userRepo.save(user);
 
-        return AuthResponse.builder()
-            .token(jwtService.getToken(user))
+        String token = jwtService.getToken(user);
+
+        return ResponseCookie
+            .from("access_token", token)
+            .httpOnly(true)
+            .secure(false)
+            .sameSite("Lax")
+            .path("/")
+            .maxAge(Duration.ofHours(1))
+            .build();
+
+    }
+
+    public ResponseCookie logout() {
+
+        return ResponseCookie
+            .from("access_token", "")
+            .httpOnly(true)
+            .secure(false) // true en producción
+            .sameSite("Lax")
+            .path("/")
+            .maxAge(0)
             .build();
     }
 

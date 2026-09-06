@@ -1,10 +1,13 @@
 import '../styles/rightbar.css'
 
+
 function Rightbar(){
 
     return (
         <>
+            
             <div className="rightbar-container">
+                
                 <label className="search">
                     <svg
                         width="20"
@@ -58,9 +61,8 @@ function Rightbar(){
                          <div className="tendencias-item">
                            <div>
                                 <span>VueJS</span>
-                           </div>
-                        </div>
-                        
+                           </div>                  
+                        </div>                      
                     </div>
                 </div>
 

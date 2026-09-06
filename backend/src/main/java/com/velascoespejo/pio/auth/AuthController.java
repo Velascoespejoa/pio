@@ -1,6 +1,7 @@
 package com.velascoespejo.pio.auth;
 
-
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,13 +17,35 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @PostMapping(value = "login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
-        return ResponseEntity.ok(authService.login(request));        
+    @PostMapping("login")
+    public ResponseEntity<Void> login(@RequestBody LoginRequest request) {
+
+        ResponseCookie cookie = authService.login(request);
+
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.SET_COOKIE, cookie.toString())
+            .build();
     }
     
-    @PostMapping(value = "register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request){
-        return ResponseEntity.ok(authService.register(request));
+    @PostMapping("register")
+    public ResponseEntity<Void> register(@RequestBody RegisterRequest request) {
+
+        ResponseCookie cookie = authService.register(request);
+
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.SET_COOKIE, cookie.toString())
+            .build();
+    }
+    
+    @PostMapping("logout")
+    public ResponseEntity<Void> logout(){
+
+        ResponseCookie cookie = authService.logout();
+        return ResponseEntity
+            .ok()
+            .header(HttpHeaders.SET_COOKIE, cookie.toString())
+            .build();
     }
 }
