@@ -100,7 +100,17 @@ const pios = [
 
 
     return (
-        <>  <div className="publicar-container">
+        <> 
+            <div className="top-container">
+                <div className="top-item">
+                    <span>Para ti</span>
+                </div>
+                <div className="top-item">
+                    <span className='marcado'>Siguiendo</span>
+                </div>
+            </div>
+
+            <div className="publicar-container">
                 <div className="publicar-top">
                     <div className="avatar-container">
                         <img src={reactIcono} alt="avatar" />    
@@ -110,7 +120,7 @@ const pios = [
                             id="postInput"
                             className="publicar-input"
                             contentEditable="true"
-                            data-placeholder="¿Qué te ha ofendido hoy?"
+                            data-placeholder="¿Qué te ha ofendido ahora?"
                             role="textbox"
                             aria-multiline="true"
                         >

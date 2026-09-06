@@ -10,8 +10,8 @@ function Sidebar(){
             ¡Estamos trabajando una SPA!*/}
             <nav className="navbar">
 
-                <div className="nav-item">
-                    <img className="nav-img" src={reactIcono} alt='logo'/>                    
+                <div className="nav-title">
+                    <img className="nav-img" src={reactIcono} alt='logo'/>                 
                 </div>
 
 

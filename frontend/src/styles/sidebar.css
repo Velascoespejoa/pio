@@ -4,7 +4,7 @@
     position: fixed; 
 }
 
-.nav-item {
+.nav-item, .nav-title {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -16,7 +16,11 @@
 }
 
 .nav-item:hover{
-    background-color: rgba(228, 226, 223, 0.25);
+    background-color: rgba(228, 226, 223, .5);
+}
+
+.nav-title:hover{
+    background-color: rgba(228, 226, 223, .5);
 }
 
 .nav-icon {
@@ -33,3 +37,15 @@
     height: 60px;
     border-radius: 30px;
 }
+
+
+/* @media (min-width: 1250px){
+
+    .nav-img{
+        transition: transform 0.5s ease;
+    }
+
+    .nav-item:hover .nav-img{
+        transform: translateX(110px);
+    }
+} */
