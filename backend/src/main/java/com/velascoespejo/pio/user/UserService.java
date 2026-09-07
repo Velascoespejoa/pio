@@ -44,6 +44,7 @@ public class UserService {
 	}
 
 
+
 	public UserResponseDTO createUser(UserRequestDTO dto) {
 
 	    if (userRepo.findByEmail(dto.getEmail()).isPresent()) {
@@ -91,7 +92,16 @@ public class UserService {
 		
 		userRepo.delete(user);
 	}
-	
+
+
+	public UserResponseDTO getUserByNick(String nick) {
+
+		User user = userRepo.findByNick(nick)
+			.orElseThrow(() -> new UserException("Usuario '" + nick + "' no encontrado",HttpStatus.NOT_FOUND));
+
+		return userMap.toDTO(user);
+	}
+
 	
 
 	

@@ -95,8 +95,7 @@ const pios = [
         profileImgUrl: "8.jpeg"
     },
 
-];
-    
+];    
 
 
     return (

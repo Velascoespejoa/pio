@@ -44,10 +44,10 @@ public class PostService {
 		return postMap.toDTO(post);
 	}
 
-	public PostResponseDTO createPost(PostRequestDTO dto) {
+	public PostResponseDTO createPost(PostRequestDTO dto, String nick) {
 		
-		User user = userRepo.findById(dto.getUserId()).orElseThrow(
-				()-> new UserException("id de usuario no existe",HttpStatus.NOT_FOUND));
+		User user = userRepo.findByNick(nick).orElseThrow(
+				()-> new UserException("No existe ese usuario", HttpStatus.NOT_FOUND));
 
 		Post post = postMap.toEntity(dto);
 
@@ -58,21 +58,21 @@ public class PostService {
 		return postMap.toDTO(postGuardado);
 	}
 
-	public PostResponseDTO updatePost(Long id, PostRequestDTO dto) {
+	// public PostResponseDTO updatePost(Long id, PostRequestDTO dto) {
 		
-		User user = userRepo.findById(dto.getUserId()).orElseThrow(
-				()-> new UserException("id de usuario no existe",HttpStatus.NOT_FOUND));
+	// 	User user = userRepo.findById(dto.getUserId()).orElseThrow(
+	// 			()-> new UserException("id de usuario no existe",HttpStatus.NOT_FOUND));
 		
-		Post post = postRepo.findById(id).orElseThrow(
-				()-> new PostException("id no encontrado", HttpStatus.NOT_FOUND));
+	// 	Post post = postRepo.findById(id).orElseThrow(
+	// 			()-> new PostException("id no encontrado", HttpStatus.NOT_FOUND));
 		
-		post.setBody(dto.getBody());
-		post.setUser(user); // ¿hace falta?
+	// 	post.setBody(dto.getBody());
+	// 	post.setUser(user); // ¿hace falta?
 		
-		Post postActualizado = postRepo.save(post);
+	// 	Post postActualizado = postRepo.save(post);
 		
-		return postMap.toDTO(postActualizado);
-	}
+	// 	return postMap.toDTO(postActualizado);
+	// }
 
 	public void deletePost(Long id) {
 		Post post = postRepo.findById(id).orElseThrow(

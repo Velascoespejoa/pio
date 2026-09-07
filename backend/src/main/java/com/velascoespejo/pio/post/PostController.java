@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,15 +37,16 @@ public class PostController {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<PostResponseDTO> createPost(@Valid @RequestBody PostRequestDTO dto) {
-		PostResponseDTO response = postService.createPost(dto);
+	public ResponseEntity<PostResponseDTO> createPost(@Valid @RequestBody PostRequestDTO dto, Authentication authentication) {
+		String nick = authentication.getName();
+		PostResponseDTO response = postService.createPost(dto, nick);
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
-	@PutMapping("/{id}")
-	public PostResponseDTO updatePost(@Valid @PathVariable Long id, @RequestBody PostRequestDTO dto) {
-		return postService.updatePost(id,dto);
-	}
+	// @PutMapping("/{id}")
+	// public PostResponseDTO updatePost(@Valid @PathVariable Long id, @RequestBody PostRequestDTO dto) {
+	// 	return postService.updatePost(id,dto);
+	// }
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletePost(@PathVariable Long id){
