@@ -14,4 +14,8 @@ import com.velascoespejo.pio.post.Post;
 public interface LikeRepository  extends JpaRepository<Like, Long>{
 
     Optional<Like> findByUserAndPost(User user , Post post);
+
+    boolean existsByUserAndPost(User user, Post post);
+
+    long countByPostId(Long postId);
 }

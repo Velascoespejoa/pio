@@ -11,6 +11,8 @@ import com.velascoespejo.pio.user.User;
 import com.velascoespejo.pio.user.UserException;
 import com.velascoespejo.pio.user.UserMapper;
 import com.velascoespejo.pio.user.UserRepository;
+import com.velascoespejo.pio.like.LikeRepository;
+import com.velascoespejo.pio.repost.RepostRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -22,6 +24,8 @@ public class PostService {
 	private PostRepository postRepo;
 	private UserMapper userMap;
 	private UserRepository userRepo;
+	private LikeRepository likeRepo;
+	private RepostRepository repostRepo;
 	
 	public List<PostResponseDTO> getAllPost() {
 		
@@ -35,13 +39,25 @@ public class PostService {
 		return dtos;
 	}
 
-	public PostResponseDTO getPostById(Long id) {
+	public PostResponseDTO getPostById(Long id, String nick) {
 		
 		Post post = postRepo.findById(id).orElseThrow(
 				()-> new PostException("id no encontrado", HttpStatus.NOT_FOUND));
+		User user = userRepo.findByNick(nick).orElseThrow(
+				() -> new UserException("Usuario '" + nick + "' no encontrado", HttpStatus.NOT_FOUND));
 		
-		
-		return postMap.toDTO(post);
+		long likeCount = likeRepo.countByPostId(post.getId());
+		long repostCount = repostRepo.countByPostId(post.getId());
+
+		boolean likedByMe = likeRepo.existsByUserAndPost(user, post);
+		boolean repostedByMe = repostRepo.existsByUserAndPost(user, post);
+
+		PostResponseDTO dto = postMap.toDTO(post);	
+		dto.setLikeCount(likeCount);
+		dto.setRepostCount(repostCount);
+		dto.setLikedByMe(likedByMe);
+		dto.setRepostedByMe(repostedByMe);
+		return dto;
 	}
 
 	public PostResponseDTO createPost(PostRequestDTO dto, String nick) {

@@ -39,8 +39,9 @@ public class PostController {
 	}
 	
 	@GetMapping("/{id}")
-	public PostResponseDTO getPostById(@PathVariable Long id) {
-		return postService.getPostById(id);
+	public PostResponseDTO getPostById(@PathVariable Long id, Authentication authentication) {
+		String nick = authentication.getName();
+		return postService.getPostById(id, nick);
 	}
 	
 	@PostMapping()

@@ -14,4 +14,8 @@ import com.velascoespejo.pio.post.Post;
 public interface RepostRepository  extends JpaRepository<Repost, Long>{
 
     Optional<Repost> findByUserAndPost(User user , Post post);
+
+    boolean existsByUserAndPost(User user, Post post);
+
+    long countByPostId(Long postId);
 }
