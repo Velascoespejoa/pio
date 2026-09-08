@@ -53,7 +53,6 @@ public class AuthService {
             .path("/")
             .maxAge(Duration.ofHours(1))
             .build();
-
     }
 
     public ResponseCookie register(RegisterRequest request) {

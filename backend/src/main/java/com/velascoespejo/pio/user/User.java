@@ -47,7 +47,9 @@ public class User implements UserDetails {
 	private Long id;
 	
 	private String name;
+	@Column(unique = true, nullable = false)
 	private String nick;
+	@Column(unique = true, nullable = false)
 	private String email;
 	private String passwordHashed;
 	private String imgPerfil;

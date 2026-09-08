@@ -2,6 +2,9 @@ package com.velascoespejo.pio.post;
 
 import java.util.List;
 
+import com.velascoespejo.pio.like.LikeService;
+import com.velascoespejo.pio.repost.RepostService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -24,7 +27,11 @@ import lombok.AllArgsConstructor;
 @RequestMapping("api/posts")
 public class PostController {
 
-	private PostService postService;
+	private final PostService postService;
+	private final LikeService likeService;
+	private final RepostService repostService;
+
+
 	
 	@GetMapping()
 	public List<PostResponseDTO> getAllPost() {
@@ -54,5 +61,18 @@ public class PostController {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
+	@PostMapping("/{id}/like")
+	public ResponseEntity<Void> toggleLike(@PathVariable Long id, Authentication authentication){
+		String nick = authentication.getName();
+		likeService.toggleLike(id, nick);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();		
+	}
+
+	@PostMapping("/{id}/repost")
+	public ResponseEntity<Void> toggleRepost(@PathVariable Long id, Authentication authentication){
+		String nick = authentication.getName();
+		repostService.toggleRepost(id, nick);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();		
+	}
 	
 }
