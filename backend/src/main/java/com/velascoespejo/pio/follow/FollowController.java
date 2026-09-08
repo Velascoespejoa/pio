@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.security.core.Authentication;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,14 +27,16 @@ public class FollowController {
     private final FollowService followService;
 
     @PostMapping("/{seguidoId}/follow")
-    public ResponseEntity<Void> follow(@PathVariable Long seguidoId, @RequestParam Long seguidorId) {
-        followService.follow(seguidoId, seguidorId);
+    public ResponseEntity<Void> follow(@PathVariable Long seguidoId, Authentication authentication) {
+        String nick = authentication.getName();
+        followService.follow(seguidoId , nick);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{seguidorId}/follow")
-    public ResponseEntity<Void> unfollow(@PathVariable Long seguidorId, @RequestParam Long seguidoId){
-        followService.unfollow(seguidorId, seguidoId);
+    @DeleteMapping("/{seguidoId}/follow")
+    public ResponseEntity<Void> unfollow(@PathVariable Long seguidoId, Authentication authentication) {
+        String nick = authentication.getName();
+        followService.unfollow(seguidoId, nick);
         return ResponseEntity.ok().build();
     }
 

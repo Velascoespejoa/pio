@@ -27,13 +27,29 @@ public class PostService {
 	private LikeRepository likeRepo;
 	private RepostRepository repostRepo;
 	
-	public List<PostResponseDTO> getAllPost() {
+	public List<PostResponseDTO> getAllPost(String nick) {
+
+		User user = userRepo.findByNick(nick).orElseThrow(
+				() -> new UserException("Usuario '" + nick + "' no encontrado", HttpStatus.NOT_FOUND));
+		
 		
 		List<Post> posts = postRepo.findAll();
 		List<PostResponseDTO> dtos = new ArrayList<>();
 		
 		for (Post post : posts) {
-			dtos.add(postMap.toDTO(post));
+
+			long likeCount = likeRepo.countByPostId(post.getId());
+			long repostCount = repostRepo.countByPostId(post.getId());
+			boolean likedByMe = likeRepo.existsByUserAndPost(user, post);
+			boolean repostedByMe = repostRepo.existsByUserAndPost(user, post);
+
+			PostResponseDTO dto = postMap.toDTO(post);
+			dto.setLikeCount(likeCount);
+			dto.setRepostCount(repostCount);
+			dto.setLikedByMe(likedByMe);
+			dto.setRepostedByMe(repostedByMe);
+
+			dtos.add(dto);
 		}
 		
 		return dtos;
@@ -60,18 +76,24 @@ public class PostService {
 		return dto;
 	}
 
-	public PostResponseDTO createPost(PostRequestDTO dto, String nick) {
+	public PostResponseDTO createPost(PostRequestDTO requestDTO, String nick) {
 		
 		User user = userRepo.findByNick(nick).orElseThrow(
 				()-> new UserException("No existe ese usuario", HttpStatus.NOT_FOUND));
 
-		Post post = postMap.toEntity(dto);
+		Post post = postMap.toEntity(requestDTO);
 
 		post.setUser(user);
 		
 		Post postGuardado = postRepo.save(post);
+
+		PostResponseDTO dto = postMap.toDTO(post);
+		dto.setLikeCount(0L);
+		dto.setRepostCount(0L);
+		dto.setLikedByMe(false);
+		dto.setRepostedByMe(false);
 		
-		return postMap.toDTO(postGuardado);
+		return dto;
 	}
 
 	// public PostResponseDTO updatePost(Long id, PostRequestDTO dto) {

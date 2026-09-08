@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class PostResponseDTO {
-	
+	private Long id;
 	private String body;
 	private LocalDateTime createAt;
 	private LocalDateTime updateAt;

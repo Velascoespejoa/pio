@@ -10,6 +10,7 @@ import com.velascoespejo.pio.user.User;
 import com.velascoespejo.pio.user.UserMapper;
 import com.velascoespejo.pio.user.UserRepository;
 import com.velascoespejo.pio.user.UserResponseDTO;
+import com.velascoespejo.pio.user.UserException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,27 +23,62 @@ public class FollowService {
     private final UserRepository userRepo;
     private final UserMapper userMap;
 
-    public void follow(Long seguidoId, Long seguidorId) {
-        if (seguidorId.equals(seguidoId)) 
-            throw new FollowException("No puedes seguirte a ti mismo", HttpStatus.CONFLICT);
+    public void follow(Long seguidoId, String nick) {
 
-        if (followRepo.existsBySeguidorAndSeguido(
-                userRepo.getReferenceById(seguidorId),
-                userRepo.getReferenceById(seguidoId)))
-            throw new FollowException("Ya sigues a este usuario",HttpStatus.CONFLICT);
+        User seguidor = userRepo.findByNick(nick)
+            .orElseThrow(() -> new UserException(
+                "Usuario '" + nick + "' no encontrado",
+                HttpStatus.NOT_FOUND
+            ));
+
+        User seguido = userRepo.findById(seguidoId)
+            .orElseThrow(() -> new UserException(
+                "Usuario con id '" + seguidoId + "' no encontrado",
+                HttpStatus.NOT_FOUND
+            ));
+
+        if (seguidor.getId().equals(seguido.getId())) {
+            throw new FollowException(
+                "No puedes seguirte a ti mismo",
+                HttpStatus.CONFLICT
+            );
+        }
+
+        if (followRepo.existsBySeguidorAndSeguido(seguidor, seguido)) {
+            throw new FollowException(
+                "Ya sigues a este usuario",
+                HttpStatus.CONFLICT
+            );
+        }
 
         Follow follow = new Follow();
-        follow.setSeguidor(userRepo.getReferenceById(seguidorId));
-        follow.setSeguido(userRepo.getReferenceById(seguidoId));
+        follow.setSeguidor(seguidor);
+        follow.setSeguido(seguido);
+
         followRepo.save(follow);
     }
 
 
-    public void unfollow(Long seguidoId, Long seguidorId) {
-        Follow follow = followRepo.findBySeguidorAndSeguido(
-                userRepo.getReferenceById(seguidorId),
-                userRepo.getReferenceById(seguidoId))
-            .orElseThrow(() -> new FollowException("No sigues a este usuario",HttpStatus.BAD_REQUEST));
+    public void unfollow(Long seguidoId, String nick) {
+
+        User seguidor = userRepo.findByNick(nick)
+            .orElseThrow(() -> new UserException(
+                "Usuario '" + nick + "' no encontrado",
+                HttpStatus.NOT_FOUND
+            ));
+
+        User seguido = userRepo.findById(seguidoId)
+            .orElseThrow(() -> new UserException(
+                "Usuario con id '" + seguidoId + "' no encontrado",
+                HttpStatus.NOT_FOUND
+            ));
+
+        Follow follow = followRepo.findBySeguidorAndSeguido(seguidor, seguido)
+            .orElseThrow(() -> new FollowException(
+                "No sigues a este usuario",
+                HttpStatus.BAD_REQUEST
+            ));
+
         followRepo.delete(follow);
     }
 

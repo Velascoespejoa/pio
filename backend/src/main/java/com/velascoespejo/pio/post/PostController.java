@@ -34,8 +34,9 @@ public class PostController {
 
 	
 	@GetMapping()
-	public List<PostResponseDTO> getAllPost() {
-		return postService.getAllPost();
+	public List<PostResponseDTO> getAllPost(Authentication authentication) {
+		String nick = authentication.getName();
+		return postService.getAllPost(nick);
 	}
 	
 	@GetMapping("/{id}")
