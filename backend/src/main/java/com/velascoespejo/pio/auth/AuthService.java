@@ -4,6 +4,7 @@ package com.velascoespejo.pio.auth;
 import java.time.Duration;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseCookie;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.velascoespejo.pio.jwt.JwtService;
 import com.velascoespejo.pio.user.Role;
 import com.velascoespejo.pio.user.User;
+import com.velascoespejo.pio.user.UserException;
 import com.velascoespejo.pio.user.UserRepository;
 
 
@@ -57,6 +59,20 @@ public class AuthService {
 
     public ResponseCookie register(RegisterRequest request) {
 
+        if (userRepo.findByNick(request.getNick()).isPresent()) {
+            throw new UserException(
+                "El nick '" + request.getNick() + "' ya está en uso",
+                HttpStatus.CONFLICT
+            );
+        }
+
+        if (userRepo.findByEmail(request.getEmail()).isPresent()) {
+            throw new UserException(
+                "El email '" + request.getEmail() + "' ya está en uso",
+                HttpStatus.CONFLICT
+            );
+        }
+
         User user = User.builder()
             .nick(request.getNick())
             .passwordHashed(passwordEncoder.encode(request.getPassword()))
@@ -77,7 +93,6 @@ public class AuthService {
             .path("/")
             .maxAge(Duration.ofHours(1))
             .build();
-
     }
 
     public ResponseCookie logout() {

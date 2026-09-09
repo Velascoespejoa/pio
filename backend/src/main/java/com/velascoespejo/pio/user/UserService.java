@@ -102,7 +102,16 @@ public class UserService {
 		return userMap.toDTO(user);
 	}
 
-	
+	public List<UserResponseDTO> searchUSers(String q){
+		List<User> users = userRepo.findByNickContainingIgnoreCase(q);
+		List<UserResponseDTO> dtos = new ArrayList<>();
+
+		for (User user : users) {
+			dtos.add(userMap.toDTO(user));
+		}
+		
+		return dtos;
+	}
 
 	
 	

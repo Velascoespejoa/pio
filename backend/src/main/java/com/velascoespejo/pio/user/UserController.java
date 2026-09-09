@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
@@ -50,5 +51,12 @@ public class UserController {
 	public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+
+	@GetMapping("/search")
+	public ResponseEntity<List<UserResponseDTO>> searchUsers(@RequestParam String q){
+		return ResponseEntity.ok(
+			userService.searchUSers(q)
+		);
 	}
 }
