@@ -103,7 +103,7 @@ public class UserService {
 
 	public List<UserResponseDTO> searchUSers(String q){
 		
-		List<User> users = userRepo.findByNickContainingIgnoreCase(q);
+		List<User> users = userRepo.findTop10ByNickContainingIgnoreCase(q);
 		List<UserResponseDTO> dtos = new ArrayList<>();
 
 		for (User user : users) {
