@@ -93,7 +93,6 @@ public class UserService {
 		userRepo.delete(user);
 	}
 
-
 	public UserResponseDTO getUserByNick(String nick) {
 
 		User user = userRepo.findByNick(nick)
@@ -103,6 +102,7 @@ public class UserService {
 	}
 
 	public List<UserResponseDTO> searchUSers(String q){
+		
 		List<User> users = userRepo.findByNickContainingIgnoreCase(q);
 		List<UserResponseDTO> dtos = new ArrayList<>();
 
