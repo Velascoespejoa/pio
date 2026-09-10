@@ -5,6 +5,7 @@
   max-width: 1280px;
   margin: 0 auto;
   min-height: 100vh;
+  font-family: 'Inter', sans-serif;
 }
 
 .sidebar {
@@ -44,10 +45,13 @@
     
   }
 
-  .sidebar .nav-item{
-    border-radius: 0px;
+  .sidebar button {
+    display: none;
   }
-  
+
+  .sidebar .nav-title .title-userInfo{
+    display: none;
+  }
 
   .sidebar span {
     display: none;
@@ -56,6 +60,12 @@
   .sidebar .nav-item{
     justify-content: center;
   }
+
+  .sidebar .nav-title{
+    justify-content: center;
+    padding: 15px;
+  }
+  
 
 }
 

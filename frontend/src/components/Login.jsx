@@ -10,7 +10,7 @@ function Login() {
     const [nick, setNick] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-     const [mostrarRegister, setMostrarRegister] = useState(false);
+    const [mostrarRegister, setMostrarRegister] = useState(false);
 
     const handleSubmit = async (e) => {
 
@@ -25,11 +25,11 @@ function Login() {
     };
 
     if (mostrarRegister) {
-    return (
-        <Register
-            volverLogin={() => setMostrarRegister(false)}
-        />
-    );
+        return (
+            <Register
+                volverLogin={() => setMostrarRegister(false)}
+            />
+        );
 }
 
     return (
@@ -43,13 +43,15 @@ function Login() {
                         placeholder="Nick"
                         value={nick}
                         onChange={(e) => setNick(e.target.value)}
+                        required
                     />
 
                     <input
                         type="password"
-                        placeholder="Contraseña"
+                        placeholder="Contraseña (mínimo 8 caracteres)"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
                     />
 
                     <button type="submit" disabled={loading}>

@@ -35,13 +35,15 @@ function Register({volverLogin}){
                         placeholder="Nick"
                         value={nick}
                         onChange={(e) => setNick(e.target.value)}
+                        required
                     />
 
                     <input
                         type="password"
-                        placeholder="Contraseña"
+                        placeholder="Contraseña (mínimo 8 caracteres)"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
                     />
 
                     <input
@@ -49,6 +51,7 @@ function Register({volverLogin}){
                         placeholder="Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
                     />
 
                     <input
@@ -56,6 +59,7 @@ function Register({volverLogin}){
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                     />
 
                     <button type="submit" disabled={loading}>

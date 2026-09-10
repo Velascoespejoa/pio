@@ -14,7 +14,11 @@ function Sidebar(){
             <nav className="navbar">
 
                 <div className="nav-title">
-                    <img className="nav-img" src={`http://localhost:8080/uploads/avatars/${user.imgPerfil}`} alt='logo'/>                 
+                    <img className="nav-img" src={`http://localhost:8080/uploads/avatars/${user.imgPerfil}`} alt='logo'/>
+                    <div className="title-userInfo">
+                        <span className='userInfo-name'>{user.name}</span>
+                        <span className="userInfo-nick">@{user.nick}</span>
+                    </div>                
                 </div>
 
 
