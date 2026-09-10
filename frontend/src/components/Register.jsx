@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import '../styles/login.css';
-import Register from './Register.jsx';
 
-function Login() {
+function Register({volverLogin}){
 
-    const { login, loading } = useAuth();
+    const { register, loading } = useAuth();
 
     const [nick, setNick] = useState("");
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [error, setError] = useState("");
-     const [mostrarRegister, setMostrarRegister] = useState(false);
 
     const handleSubmit = async (e) => {
 
@@ -18,23 +18,15 @@ function Login() {
         setError("");
 
         try {
-            await login(nick, password);
+            await register(nick, password, email, name);
         } catch (error) {
             setError(error.message);
         }
     };
 
-    if (mostrarRegister) {
-    return (
-        <Register
-            volverLogin={() => setMostrarRegister(false)}
-        />
-    );
-}
-
     return (
         <div className="login-body">
-            <h2>Login</h2>
+            <h2>Crear usuario</h2>
             <div className="login-container">
                 <form onSubmit={handleSubmit}>
 
@@ -52,26 +44,37 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+
                     <button type="submit" disabled={loading}>
                         {loading ? "Entrando..." : "Login"}
                     </button>
-                    <a
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setMostrarRegister(true);
-                        }}
-                    >
-                        Registrarse
+                    <a href="#" onClick={(e) => {
+                        e.preventDefault();
+                        volverLogin();
+                    }}>
+                        Volver al login
                     </a>
+                    
                     {error && <p>{error}</p>}
 
                 </form>
             </div>
-        </div>
-            
+        </div>           
             
     );
 }
 
-export default Login;
+export default Register;

@@ -83,6 +83,51 @@ export function AuthProvider({ children }) {
         }
     };
 
+    const register = async (nick, password, email, name) => {
+
+        setLoading(true);
+
+        try {
+            const response = await fetch("http://localhost:8080/auth/register", {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nick,
+                    password,
+                    email,
+                    name
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error("No se pudo registrar el usuario");
+            }
+
+            // Si register también crea la cookie JWT,
+            // pedimos los datos del usuario.
+            const userResponse = await fetch(
+                "http://localhost:8080/auth/me",
+                {
+                    credentials: "include"
+                }
+            );
+
+            if (!userResponse.ok) {
+                throw new Error("No se pudo obtener el usuario");
+            }
+
+            const userData = await userResponse.json();
+
+            setUser(userData);
+
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const logout = async () => {
 
         await fetch("http://localhost:8080/auth/logout", {
@@ -100,6 +145,7 @@ export function AuthProvider({ children }) {
                 loading,
                 login,
                 logout,
+                register,
                 isAuthenticated: user !== null
             }}
         >

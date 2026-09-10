@@ -1,5 +1,6 @@
 import '../styles/sidebar.css'
 import { useAuth } from '../context/AuthContext.jsx';
+import Logout from './Logout.jsx';
 
 
 function Sidebar(){
@@ -78,6 +79,9 @@ function Sidebar(){
                     </svg>
                     <span className="nav-label">Ajustes</span>
                 </a>
+                <Logout />  
+
+                
 
             </nav>
         </>
