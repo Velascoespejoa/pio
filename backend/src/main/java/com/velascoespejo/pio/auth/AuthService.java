@@ -35,22 +35,27 @@ public class AuthService {
 
     public ResponseCookie login(LoginRequest request) {
 
+    String nick = request.getNick().trim().toLowerCase();
+
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
-                request.getNick(),
+                nick,
                 request.getPassword()
             )
         );
 
-        UserDetails user = userRepo.findByNick(request.getNick())
-            .orElseThrow();
+        UserDetails user = userRepo.findByNick(nick)
+            .orElseThrow(() -> new UserException(
+                "Credenciales incorrectas",
+                HttpStatus.UNAUTHORIZED
+            ));
 
         String token = jwtService.getToken(user);
 
-         return ResponseCookie
+        return ResponseCookie
             .from("access_token", token)
             .httpOnly(true)
-            .secure(false) // true en producción con HTTPS
+            .secure(false)
             .sameSite("Lax")
             .path("/")
             .maxAge(Duration.ofHours(1))
@@ -74,10 +79,10 @@ public class AuthService {
         }
 
         User user = User.builder()
-            .nick(request.getNick())
+            .nick(request.getNick().trim().toLowerCase())
             .passwordHashed(passwordEncoder.encode(request.getPassword()))
             .name(request.getName())
-            .email(request.getEmail())
+            .email(request.getEmail().trim().toLowerCase())
             .imgPerfil("default-avatar.png")
             .role(Role.USER)
             .build();

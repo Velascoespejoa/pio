@@ -22,6 +22,11 @@
 
 .title-userInfo span {
     padding: 1px;
+    display: inline-block;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .userInfo-name{
