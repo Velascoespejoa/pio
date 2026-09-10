@@ -100,7 +100,6 @@ function Feed(){
 
     ];    
 
-
     return (
         <> 
             <div className="top-container">

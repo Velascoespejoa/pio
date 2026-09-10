@@ -1,5 +1,4 @@
 import '../styles/sidebar.css'
-import reactIcono from "../assets/react.png"
 import { useAuth } from '../context/AuthContext.jsx';
 
 

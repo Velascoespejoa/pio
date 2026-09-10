@@ -57,6 +57,7 @@ public class User implements UserDetails {
 	@Column(nullable = false)
 	@NotBlank
 	private String passwordHashed;
+
 	private String imgPerfil;
 	@Enumerated(EnumType.STRING)
 	private Role role;

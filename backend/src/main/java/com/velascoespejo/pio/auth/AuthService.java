@@ -78,6 +78,7 @@ public class AuthService {
             .passwordHashed(passwordEncoder.encode(request.getPassword()))
             .name(request.getName())
             .email(request.getEmail())
+            .imgPerfil("default-avatar.png")
             .role(Role.USER)
             .build();
 
