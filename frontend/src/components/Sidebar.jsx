@@ -1,8 +1,11 @@
 import '../styles/sidebar.css'
 import reactIcono from "../assets/react.png"
+import { useAuth } from '../context/AuthContext.jsx';
 
 
 function Sidebar(){
+
+    const {user} = useAuth(); 
 
     return (
         <>
@@ -11,7 +14,7 @@ function Sidebar(){
             <nav className="navbar">
 
                 <div className="nav-title">
-                    <img className="nav-img" src={reactIcono} alt='logo'/>                 
+                    <img className="nav-img" src={`http://localhost:8080/uploads/avatars/${user.imgPerfil}`} alt='logo'/>                 
                 </div>
 
 

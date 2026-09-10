@@ -79,6 +79,7 @@ public class UserService {
 		user.setName(dto.getName());
 		user.setNick(dto.getNick());
 		user.setPasswordHashed(passEncoder.encode(dto.getPassword()));
+		user.setImgPerfil(dto.getImgPerfil());
 		
 		User userGuardado = userRepo.save(user);
 		

@@ -1,11 +1,14 @@
 import Pio from '../components/Pio.jsx'
 import "../styles/feed.css"
-import reactIcono from "../assets/react.png"
+import { useAuth } from '../context/AuthContext.jsx';
+
+
 
 function Feed(){
 
+    const {user} = useAuth(); 
 
-const pios = [
+    const pios = [
     {
         nick: "Xetloz",
         user: "xetloz1001",
@@ -95,7 +98,7 @@ const pios = [
         profileImgUrl: "8.jpeg"
     },
 
-];    
+    ];    
 
 
     return (
@@ -114,7 +117,7 @@ const pios = [
             <div className="publicar-container">
                 <div className="publicar-top">
                     <div className="avatar-container">
-                        <img src={reactIcono} alt="avatar" />    
+                        <img src={`http://localhost:8080/uploads/avatars/${user.imgPerfil}`} alt="avatar" />    
                     </div>
                     <div className="publicar-body">
                         <div

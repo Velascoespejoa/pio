@@ -26,6 +26,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,11 +48,14 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String name;
 	@Column(unique = true, nullable = false)
 	private String nick;
 	@Column(unique = true, nullable = false)
 	private String email;
+	@Column(nullable = false)
+	@NotBlank
 	private String passwordHashed;
 	private String imgPerfil;
 	@Enumerated(EnumType.STRING)

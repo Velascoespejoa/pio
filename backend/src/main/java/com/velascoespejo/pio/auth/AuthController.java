@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.velascoespejo.pio.user.UserResponseDTO;
 import com.velascoespejo.pio.user.UserService;
-
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -24,7 +24,7 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<Void> login(@Valid @RequestBody LoginRequest request) {
 
         ResponseCookie cookie = authService.login(request);
 
@@ -35,7 +35,7 @@ public class AuthController {
     }
     
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<Void> register(@Valid @RequestBody RegisterRequest request) {
 
         ResponseCookie cookie = authService.register(request);
 

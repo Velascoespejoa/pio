@@ -11,7 +11,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 
 function Home() {
 
-    const { isAuthenticated, loading } = useAuth();
+    const { isAuthenticated, loading, user } = useAuth();
 
 
     // Todavía estamos comprobando si existe una sesión
@@ -29,7 +29,6 @@ function Home() {
     // Usuario autenticado
     return (
         <div className="container">
-
             <aside className="sidebar">
                 <Sidebar />
             </aside>
