@@ -51,7 +51,7 @@ function Rightbar(){
                     <div className="sugerencias-body">
                         <div className="seguir-a">
                             <div className="seguir-avatar">
-                                <img src="src/assets/avatares/1.jpeg" alt="img" />
+                                <img src="http://localhost:8080/uploads/avatars/1.jpeg" alt="img" />
                             </div>
 
                             <div className="seguir-info">
@@ -71,7 +71,7 @@ function Rightbar(){
 
                         <div className="seguir-a">
                             <div className="seguir-avatar">
-                                <img src="src/assets/avatares/2.jpeg" alt="img" />
+                                <img src="http://localhost:8080/uploads/avatars/2.jpeg" alt="img" />
                             </div>
 
                             <div className="seguir-info">
@@ -91,7 +91,7 @@ function Rightbar(){
 
                         <div className="seguir-a">
                             <div className="seguir-avatar">
-                                <img src="src/assets/avatares/3.jpeg" alt="img" />
+                                <img src="http://localhost:8080/uploads/avatars/3.jpeg" alt="img" />
                             </div>
 
                             <div className="seguir-info">

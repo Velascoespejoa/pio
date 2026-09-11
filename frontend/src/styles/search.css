@@ -1,6 +1,6 @@
 .search-container {
     position: relative;
-    width: 80%;
+    width: 80%;   
 }
 
 .search {
@@ -28,6 +28,39 @@
     flex: 1;
 }
 
+.search-card{
+    display: flex;
+    padding: 10px;
+}
+
+.search-card:hover{
+    background-color: rgba(228, 226, 223, .5);
+    cursor: pointer;
+}
+
+.search-info{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+.search-info span,
+.search-info strong {
+    font-size: small;
+    padding: 1px;
+    display: inline-block;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-avatar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 30px;
+}
+
 .closeSVG{
     position: absolute;
     right:10px;
@@ -41,10 +74,9 @@
 
 .search-response {
     display: none;
-
     position: absolute;
     /* top: calc(100% + 0px); */
-    left: 0;
+    
 
     width: 100%;
     height: 70vh;
@@ -52,8 +84,11 @@
     border-radius: 5px;
     border: 1px solid rgba(126, 125, 125, 0.2);
 
-    background-color: white;
+    background-color: whitesmoke;
 
+    box-shadow: 1px 1px 10px 5px  rgba(216, 216, 231, 0.33);
+    overflow-y: auto;
+    
  }
 
 /* Mostrar cuando el input tiene el foco */
