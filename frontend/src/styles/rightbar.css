@@ -4,31 +4,8 @@
     align-items: center;
     flex-direction: column;
     position: sticky;
-    top: 20px;
 }
 
-.search {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 15px;
-    border-radius: 10px;
-    background-color: #f2f2f2;
-    width: 73%; 
-}
-
-.search input {
-    border: none;
-    outline: none;
-    background: transparent;
-    font-size: 16px;
-    padding: 7px;
-}
-
-.search:focus-within{
-    color:rgba(0, 34, 255, 1);
-    border: 1px solid rgba(0, 34, 255, 0.5);
-}
 
 .tendencias{
     margin-top: 30px;

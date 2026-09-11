@@ -1,12 +1,12 @@
 import Pio from '../components/Pio.jsx'
 import "../styles/feed.css"
 import { useAuth } from '../context/AuthContext.jsx';
-
-
+import { useState } from 'react';
 
 function Feed(){
 
-    const {user} = useAuth(); 
+    const {user} = useAuth();
+    const [selector, setSelector] = useState(true) 
 
     const pios = [
     {
@@ -104,11 +104,13 @@ function Feed(){
         <> 
             <div className="top-container">
                 <div className="top-item">
-                    <span>Para ti</span>
+                    <span className={selector ? '' : 'marcador'} onClick={()=> setSelector(false)}>
+                        <span>Para ti</span>
+                    </span>
                 </div>
                 <div className="top-item">
-                    <span className='marcador'>
-                        <span className='marcado'>Siguiendo</span>
+                    <span className= {selector ? 'marcador' : ''} onClick={() => setSelector(true)}>
+                        <span>Siguiendo</span>
                     </span>
                 </div>
             </div>

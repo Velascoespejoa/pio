@@ -27,7 +27,7 @@
   width: 350px;
   flex-shrink: 0;
   position: sticky;
-  top: 20px;
+  top: 10px;
 
   height: calc(100vh - 40px);
   overflow-y: auto;
@@ -61,9 +61,17 @@
     justify-content: center;
   }
 
+  .sidebar .nav-item{ 
+    border-radius: 0px;
+  }
+
+  .sidebar .nav-title{
+    border-radius: 0px;
+  }
+
   .sidebar .nav-title{
     justify-content: center;
-    padding: 15px;
+    padding: 10px;
   }
   
 
@@ -77,6 +85,7 @@
   .rightbar {
     display: none;
   }
+
 
 
   .feed {

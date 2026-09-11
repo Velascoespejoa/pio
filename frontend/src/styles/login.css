@@ -1,5 +1,4 @@
 .login-body{
-
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -11,6 +10,7 @@
     background-color: aliceblue;
     width: 30%;
     height: 100px;
+
 }
 
 .login-container form{
@@ -20,4 +20,8 @@
 
 input, button {
     padding: 10px;
+}
+
+a{
+    padding-top: 10px;
 }
