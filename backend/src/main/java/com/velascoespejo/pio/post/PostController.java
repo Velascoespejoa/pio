@@ -76,5 +76,11 @@ public class PostController {
 		repostService.toggleRepost(id, nick);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();		
 	}
+
+	@GetMapping("/timeline")
+	public List<PostResponseDTO> timeline(Authentication authentication){
+		String nick = authentication.getName();
+		return postService.timeline(nick);
+	}
 	
 }

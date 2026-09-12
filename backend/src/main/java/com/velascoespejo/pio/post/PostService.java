@@ -118,6 +118,36 @@ public class PostService {
 		postRepo.delete(post);
 		
 	}
+
+	public List<PostResponseDTO>timeline(String nick){
+		
+		User user = userRepo.findByNick(nick)
+            .orElseThrow(() -> new UserException(
+                "Usuario '" + nick + "' no encontrado",
+                HttpStatus.NOT_FOUND
+            ));
+
+		List<Post> posts = postRepo.findTimeline(user.getId());
+		List<PostResponseDTO> dtos = new ArrayList<>();
+		
+		for (Post post : posts) {
+
+			long likeCount = likeRepo.countByPostId(post.getId());
+			long repostCount = repostRepo.countByPostId(post.getId());
+			boolean likedByMe = likeRepo.existsByUserAndPost(user, post);
+			boolean repostedByMe = repostRepo.existsByUserAndPost(user, post);
+
+			PostResponseDTO dto = postMap.toDTO(post);
+			dto.setLikeCount(likeCount);
+			dto.setRepostCount(repostCount);
+			dto.setLikedByMe(likedByMe);
+			dto.setRepostedByMe(repostedByMe);
+
+			dtos.add(dto);
+		}
+
+		return dtos;
+	}
 	
 	
 	
