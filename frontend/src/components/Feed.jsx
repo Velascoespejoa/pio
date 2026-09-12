@@ -1,182 +1,81 @@
 import Pio from '../components/Pio.jsx'
+import FeedTabs from './FeedTabs.jsx';
+import Publicar from './Publicar.jsx';
 import "../styles/feed.css"
 import { useAuth } from '../context/AuthContext.jsx';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 
 function Feed(){
 
     const {user} = useAuth();
     const [selector, setSelector] = useState(true) 
+    const [error, setError] = useState("");
+    const [page, setPage] = useState(0);
+    const [results,setResults] = useState([]);
+    const [loading, setLoading] = useState(true);
+   
 
-    const pios = [
-    {
-        nick: "Xetloz",
-        user: "xetloz1001",
-        time: "hace 10min",
-        text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-        comments: 3,
-        repios: 10,
-        likes: 60,
-        views: "5 mil",
-        profileImgUrl: "1.jpeg"
-    },
-    {
-        nick: "Ana García",
-        user: "anagarcia",
-        time: "hace 25min",
-        text: "Hoy he aprendido algo nuevo en React. Poco a poco todo empieza a tener sentido 🚀",
-        comments: 12,
-        repios: 4,
-        likes: 87,
-        views: "2,4 mil",
-        profileImgUrl: "2.jpeg"
-    },
-    {
-        nick: "CarlosDev",
-        user: "carlos_dev",
-        time: "hace 1h",
-        text: "¿Soy el único que piensa que pasar horas buscando un bug y descubrir que era un punto y coma es parte del aprendizaje? 😂",
-        comments: 28,
-        repios: 16,
-        likes: 143,
-        views: "8,7 mil",
-        profileImgUrl: "3.jpeg"
-    },
-    {
-        nick: "María López",
-        user: "maria_lopez",
-        time: "hace 2h",
-        text: "Un café, unos auriculares y una tarde tranquila programando. No necesito mucho más ☕💻",
-        comments: 7,
-        repios: 3,
-        likes: 45,
-        views: "1,2 mil",
-        profileImgUrl: "4.jpeg"
-    },
-    {
-        nick: "TechNews",
-        user: "technews",
-        time: "hace 3h",
-        text: "La tecnología avanza a una velocidad increíble. Cada año aparecen nuevas herramientas que cambian la forma en la que desarrollamos aplicaciones. La tecnología avanza a una velocidad increíble. Cada año aparecen nuevas herramientas que cambian la forma en la que desarrollamos aplicaciones.",
-        comments: 56,
-        repios: 102,
-        likes: 421,
-        views: "32 mil",
-        profileImgUrl: "5.jpeg"
-    },
-    {
-        nick: "David Martín",
-        user: "davidmartin",
-        time: "hace 5h",
-        text: "Acabo de terminar mi primer proyecto completo con React. No es perfecto, pero estoy bastante orgulloso del resultado. 🎉",
-        comments: 19,
-        repios: 8,
-        likes: 96,
-        views: "4,8 mil",
-        profileImgUrl: "6.jpeg"
-    },
-    {
-        nick: "Laura",
-        user: "lauradev",
-        time: "ayer",
-        text: "A veces la mejor solución a un problema complicado es simplemente parar, descansar y volver a intentarlo mañana.",
-        comments: 34,
-        repios: 21,
-        likes: 210,
-        views: "12 mil",
-        profileImgUrl: "7.jpeg"
-    },
-    {
-        nick: "Gaming España",
-        user: "gaming_es",
-        time: "ayer",
-        text: "¿Cuál es vuestro videojuego favorito de todos los tiempos? 🎮",
-        comments: 154,
-        repios: 73,
-        likes: 890,
-        views: "45 mil",
-        profileImgUrl: "8.jpeg"
-    },
+    const piosApi = async (page) =>{
+        
+        try {
+            const response = await fetch(
+                `http://localhost:8080/api/posts/timeline?page=${encodeURIComponent(page)}`,
+                {
+                    method: "GET",
+                    credentials: "include"
+                }
+            );
+            if(!response.ok){
+                throw new Error("error con el timeline");
+            }
+            
+            const data = await response.json();
 
-    ];    
+            setResults(data);
+        } catch (error){
+            setError(error.message);
+            setResults("");
+        } finally{
+            setLoading(false);
+        }
+    }
 
+    useEffect(()=>{
+        piosApi(page);
+    }, [page]);
+
+    if(loading){
+        return <p> Cargando feed... </p>
+    }
+
+    const añadirPost = (nuevoPost) => {
+        setResults(prev => [nuevoPost, ...prev]);
+    };
     return (
         <> 
-            <div className="top-container">
-                <div className="top-item">
-                    <span className={selector ? '' : 'marcador'} onClick={()=> setSelector(false)}>
-                        <span>Para ti</span>
-                    </span>
-                </div>
-                <div className="top-item">
-                    <span className= {selector ? 'marcador' : ''} onClick={() => setSelector(true)}>
-                        <span>Siguiendo</span>
-                    </span>
-                </div>
-            </div>
-
-            <div className="publicar-container">
-                <div className="publicar-top">
-                    <div className="avatar-container">
-                        <img src={`http://localhost:8080/uploads/avatars/${user.imgPerfil}`} alt="avatar" />    
-                    </div>
-                    <div className="publicar-body">
-                        <div
-                            id="postInput"
-                            className="publicar-input"
-                            contentEditable="true"
-                            data-placeholder="¿Qué te ha ofendido ahora?"
-                            role="textbox"
-                            aria-multiline="true"
-                        >
-                        </div>
-                    </div>
-                </div>
-                <div className="publicar-footer">
-                    <button>Publicar</button>
-                </div>
-            </div>
+            <FeedTabs 
+                selector={selector}
+                setSelector={setSelector}
+            />
+            <Publicar 
+                user={user}
+                onPublicado={añadirPost}
+            />
                 
-            {pios.map((pio) => (
+            {results.map((pio) => (
                 <Pio 
-                    nick = {pio.nick}
-                    user = {pio.user}
-                    time = {pio.time}
-                    text = {pio.text}
-                    comments = {pio.comments}
-                    repios = {pio.repios}
-                    likes = {pio.likes}
+                    key={pio.id}
+                    nick = {pio.userNick}
+                    user = {pio.userName}
+                    time = {pio.createAt}
+                    text = {pio.body}
+                    //comments = {pio.comments}
+                    repios = {pio.repostCount}
+                    likes = {pio.likeCount}
                     views = {pio.views}
-                    profileImgUrl = {pio.profileImgUrl}
+                    profileImgUrl = {pio.userImgPerfil}
                 />
-            ))}
-
-            {pios.map((pio) => (
-                <Pio 
-                    nick = {pio.nick}
-                    user = {pio.user}
-                    time = {pio.time}
-                    text = {pio.text}
-                    comments = {pio.comments}
-                    repios = {pio.repios}
-                    likes = {pio.likes}
-                    views = {pio.views}
-                    profileImgUrl = {pio.profileImgUrl}
-                />
-            ))}
-            {pios.map((pio) => (
-                <Pio 
-                    nick = {pio.nick}
-                    user = {pio.user}
-                    time = {pio.time}
-                    text = {pio.text}
-                    comments = {pio.comments}
-                    repios = {pio.repios}
-                    likes = {pio.likes}
-                    views = {pio.views}
-                    profileImgUrl = {pio.profileImgUrl}
-                />
-            ))}
+            ))}    
         </>
     )
     

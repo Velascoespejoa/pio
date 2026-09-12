@@ -12,6 +12,7 @@ public interface PostMapper {
 	@Mapping(source = "user.id", target = "userId")
 	@Mapping(source = "user.name", target = "userName")
 	@Mapping(source = "user.nick", target = "userNick")
+	@Mapping(source = "user.imgPerfil", target = "userImgPerfil")
 	PostResponseDTO toDTO(Post post);
 
 

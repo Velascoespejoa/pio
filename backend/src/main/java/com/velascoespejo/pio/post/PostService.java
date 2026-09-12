@@ -14,6 +14,9 @@ import com.velascoespejo.pio.user.UserRepository;
 import com.velascoespejo.pio.like.LikeRepository;
 import com.velascoespejo.pio.repost.RepostRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -42,6 +45,7 @@ public class PostService {
 			long repostCount = repostRepo.countByPostId(post.getId());
 			boolean likedByMe = likeRepo.existsByUserAndPost(user, post);
 			boolean repostedByMe = repostRepo.existsByUserAndPost(user, post);
+
 
 			PostResponseDTO dto = postMap.toDTO(post);
 			dto.setLikeCount(likeCount);
@@ -119,7 +123,7 @@ public class PostService {
 		
 	}
 
-	public List<PostResponseDTO>timeline(String nick){
+	public List<PostResponseDTO>timeline(String nick, int page){
 		
 		User user = userRepo.findByNick(nick)
             .orElseThrow(() -> new UserException(
@@ -127,7 +131,9 @@ public class PostService {
                 HttpStatus.NOT_FOUND
             ));
 
-		List<Post> posts = postRepo.findTimeline(user.getId());
+		Pageable pageable = PageRequest.of(page, 10); 
+		Page<Post> posts = postRepo.findTimeline(user.getId(), pageable);
+
 		List<PostResponseDTO> dtos = new ArrayList<>();
 		
 		for (Post post : posts) {

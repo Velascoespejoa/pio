@@ -13,10 +13,13 @@ public class PostResponseDTO {
 	private Long userId;
 	private String userName;
 	private String userNick;
-	
+	private String userImgPerfil;
+
     private Long likeCount;
     private Long repostCount;
+	private Long views;
 
 	private boolean likedByMe;
 	private boolean repostedByMe;
+	private boolean viewed;
 }

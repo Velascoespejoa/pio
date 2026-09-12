@@ -1,8 +1,10 @@
 import '../styles/pio.css'
+import {timeAgo} from '../utils/utilidades.js'
 
 
 function Pio({nick, user, time, text, comments, repios, likes, views, profileImgUrl }){
 
+    
     return (
         <>
             <div className="pio-container">
@@ -14,8 +16,8 @@ function Pio({nick, user, time, text, comments, repios, likes, views, profileImg
                     </div>
                     <div className="pio-right-column">
                         <div className="pio-tittle">
-                            <span className="nick"><strong>{nick}</strong></span>
-                            <span className="userAndTime"> @{user} - {time}</span>
+                            <span className="nick"><strong>{user}</strong></span>
+                            <span className="userAndTime"> @{nick} - {timeAgo(time)}</span>
                         </div>
                         <div className="pio-body">
                             <p>{text}</p> 

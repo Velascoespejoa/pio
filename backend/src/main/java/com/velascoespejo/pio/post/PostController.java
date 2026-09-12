@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -78,9 +79,9 @@ public class PostController {
 	}
 
 	@GetMapping("/timeline")
-	public List<PostResponseDTO> timeline(Authentication authentication){
+	public List<PostResponseDTO> timeline(@RequestParam int page, Authentication authentication){
 		String nick = authentication.getName();
-		return postService.timeline(nick);
+		return postService.timeline(nick,page);
 	}
 	
 }
